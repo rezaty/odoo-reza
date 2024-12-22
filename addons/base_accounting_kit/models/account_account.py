@@ -36,33 +36,18 @@ class CashFlow(models.Model):
 
     cash_flow_type = fields.Many2one('account.financial.report', string="Cash Flow type", domain=get_cash_flow_ids)
 
-    # @api.onchange('cash_flow_type')
-    # def onchange_cash_flow_type(self):
-    #     for rec in self.cash_flow_type:
-    #         # update new record
-    #         rec.write({
-    #             'account_ids': [(4, self._origin.id)]
-    #         })
-
-    #     if self._origin.cash_flow_type.ids:
-    #         for rec in self._origin.cash_flow_type:
-    #             # remove old record
-    #             rec.write({'account_ids': [(3, self._origin.id)]})
-
     @api.onchange('cash_flow_type')
     def onchange_cash_flow_type(self):
         for rec in self.cash_flow_type:
-            if self._origin and self._origin.id:
-                # Safely update new records
-                rec.write({
-                    'account_ids': [(4, self._origin.id)]
-                })
+            # update new record
+            rec.write({
+                'account_ids': [(4, self._origin.id)]
+            })
 
         if self._origin.cash_flow_type.ids:
             for rec in self._origin.cash_flow_type:
-                if self._origin and self._origin.id:
-                    # Safely remove old records
-                    rec.write({'account_ids': [(3, self._origin.id)]})
+                # remove old record
+                rec.write({'account_ids': [(3, self._origin.id)]})
 
 
 class AccountCommonReport(models.Model):

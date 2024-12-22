@@ -8,7 +8,6 @@ from pytz import utc
 from odoo import models, fields, api, _
 from odoo.http import request
 from odoo.tools import float_utils
-import pandas
 
 ROUNDING_FACTOR = 16
 
