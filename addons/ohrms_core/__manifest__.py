@@ -65,7 +65,8 @@
         'ent_hr_company_policy',
         'fl_birthday_wish',
         'oh_employee_check_list',
-        'hr_vacation_mngmt'
+        'hr_vacation_mngmt',
+        'ent_hrms_dashboard'
 
     ],
     "external_dependencies": {"python": ["pandas"]},
