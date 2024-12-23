@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record id="rate_pph21_view_tree" model="ir.ui.view">
+            <field name="name">rate.pph21.view.tree</field>
+            <field name="model">rate.pph21</field>
+            <field name="arch" type="xml">
+                <tree string="Rate Pph21">
+                    <field name="seq"/>
+                    <field name="nilai_rate"/>
+                    <field name="npwp_rate"/>
+                    <field name="no_npwp_rate"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="rate_pph21_view_form" model="ir.ui.view">
+            <field name="name">rate.pph21.view.form</field>
+            <field name="model">rate.pph21</field>
+            <field name="arch" type="xml">
+                <form string="Rate Pph21">
+                    <header>
+                    </header>
+                <sheet>
+                    <group>
+                        <field name="seq"/>
+                        <field name="nilai_rate"/>
+                        <field name="npwp_rate"/>
+                        <field name="no_npwp_rate"/>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="rate_pph21_action" model="ir.actions.act_window">
+            <field name="name">Rate Pph21</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rate.pph21</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="rate_pph21_menu_act" name="Rate Pph21"
+        parent="hr_payroll_community.menu_hr_payroll_community_configuration"
+        action="rate_pph21_action" />
+    </data>
+</odoo>

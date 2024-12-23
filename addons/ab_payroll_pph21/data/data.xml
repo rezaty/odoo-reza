@@ -1,0 +1,118 @@
+<odoo>
+    <data>
+        <record id="tk0" model="hr.ptkp">
+            <field name="name">TK/0</field>
+            <field name="tahun">54000000</field>
+        </record>
+        <record id="tk1" model="hr.ptkp">
+            <field name="name">TK/1</field>
+            <field name="tahun">58500000</field>
+        </record>
+        <record id="tk2" model="hr.ptkp">
+            <field name="name">TK/2</field>
+            <field name="tahun">63000000</field>
+        </record>
+        <record id="tk3" model="hr.ptkp">
+            <field name="name">TK/3</field>
+            <field name="tahun">63000000</field>
+        </record>
+        <record id="k0" model="hr.ptkp">
+            <field name="name">K/0</field>
+            <field name="tahun">58500000</field>
+        </record>
+        <record id="k1" model="hr.ptkp">
+            <field name="name">K/1</field>
+            <field name="tahun">63000000</field>
+        </record>
+        <record id="k2" model="hr.ptkp">
+            <field name="name">K/2</field>
+            <field name="tahun">67500000</field>
+        </record>
+        <record id="k3" model="hr.ptkp">
+            <field name="name">K/3</field>
+            <field name="tahun">72000000</field>
+        </record>
+        <record id="ki0" model="hr.ptkp">
+            <field name="name">K/I/0</field>
+            <field name="tahun">112500000</field>
+        </record>
+        <record id="ki1" model="hr.ptkp">
+            <field name="name">K/I/1</field>
+            <field name="tahun">117000000</field>
+        </record>
+        <record id="ki2" model="hr.ptkp">
+            <field name="name">K/I/2</field>
+            <field name="tahun">121500000</field>
+        </record>
+        <record id="ki3" model="hr.ptkp">
+            <field name="name">K/I/3</field>
+            <field name="tahun">126000000</field>
+        </record>
+        <record id="pph21_rate_1" model="rate.pph21">
+            <field name="seq">1</field>
+            <field name="nilai_rate">60000000</field>
+            <field name="npwp_rate">0.05</field>
+            <field name="no_npwp_rate">0.06</field>
+        </record>
+        <record id="pph21_rate_2" model="rate.pph21">
+            <field name="seq">2</field>
+            <field name="nilai_rate">250000000</field>
+            <field name="npwp_rate">0.15</field>
+            <field name="no_npwp_rate">0.18</field>
+        </record>
+        <record id="pph21_rate_3" model="rate.pph21">
+            <field name="seq">3</field>
+            <field name="nilai_rate">500000000</field>
+            <field name="npwp_rate">0.25</field>
+            <field name="no_npwp_rate">0.3</field>
+        </record>
+        <record id="pph21_rate_4" model="rate.pph21">
+            <field name="seq">4</field>
+            <field name="nilai_rate">5000000000</field>
+            <field name="npwp_rate">0.3</field>
+            <field name="no_npwp_rate">0.36</field>
+        </record>
+        <record id="pph21_rate_5" model="rate.pph21">
+            <field name="seq">5</field>
+            <field name="nilai_rate">9999999999999</field>
+            <field name="npwp_rate">0.35</field>
+            <field name="no_npwp_rate">0.5</field>
+        </record>
+        <record id="potongan_bpjs_kkk" model="hr.salary.rule">
+            <field name="name">BPJS Ketenagakerjaan JHT</field>
+            <field name="code">KK</field>
+            <field name="category_id" ref="hr_payroll_community.DED"/>
+            <field name="sequence">101</field>
+            <field name="amount_select">code</field>
+            <field name="condition_select">none</field>
+            <field name="amount_python_compute">
+                hasil = 0
+                if employee.bpjs_ktk:
+                    hasil = contract.wage #+ contract.tunj_fungsional + contract.tunj_makan
+                result = hasil * 0.02 * -1
+            </field>
+        </record>
+        <record id="PPH21" model="hr.salary.rule">
+            <field name="name">PPH21</field>
+            <field name="code">PPH21</field>
+            <field name="category_id" ref="hr_payroll_community.DED"/>
+            <field name="sequence">102</field>
+            <field name="amount_select">code</field>
+            <field name="condition_select">none</field>
+            <field name="amount_python_compute">
+                pajak = 0
+                self = payslip.env['hr.payslip']
+                pendapatan = categories.BASIC
+                allowance = categories.ALW
+                pensiun = KK * -1
+                pajak = self.compute_pph21(
+                    pendapatan, allowance,
+                    str(payslip.date_from)[0:4], payslip.date_to,
+                    employee, payslip.id, pensiun
+                )
+                pajak = pajak * -1
+                result = pajak
+            </field>
+        </record>
+    </data>
+</odoo>

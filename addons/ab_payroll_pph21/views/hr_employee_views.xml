@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="inherit_view_hr_employee_form" model="ir.ui.view">
+            <field name="name">hr.employee.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <group name="active_group" position="after">
+                    <group string="Tax Info" name="tax_group">
+                        <field name="punya_npwp" />
+                        <field name="no_npwp" attrs="{'invisible':[('punya_npwp', '=', False)], 'required':[('punya_npwp', '=', True)] }" />
+                        <field name="ptkp_id" options="{'no_quick_create':True, 'no_create_edit':True, 'no_open': True}" />
+                    </group>
+                </group>
+                <group name="active_group" position="inside">
+                    <field name="bpjs_ktk"/>
+                </group>
+            </field>
+        </record>
+
+        <record id="inherit_hr_hr_employee_view_form2" model="ir.ui.view">
+            <field name="name">hr.hr.employee.view.form2</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='children']" position="after">
+                    <field name="jumlah_tanggungan" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

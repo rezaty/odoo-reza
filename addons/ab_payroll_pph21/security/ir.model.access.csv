@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_ptkp,hr.ptkp,model_hr_ptkp,base.group_user,1,0,0,0
+access_group_hr_manager_ptkp,hr.ptkp,model_hr_ptkp,hr.group_hr_manager,1,1,1,0
+access_rate_pph21_user,undefined.rate.pph21,model_rate_pph21,base.group_user,1,1,1,1

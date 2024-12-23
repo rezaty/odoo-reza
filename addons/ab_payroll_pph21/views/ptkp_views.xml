@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <!-- Membuat View Tree/List PTKP -->
+        <record id="tree_hr_ptkp" model="ir.ui.view">
+            <field name="name">hr.ptkp.tree</field>
+            <field name="model">hr.ptkp</field>
+            <field name="arch" type="xml">
+                <tree string="PTKP">
+                    <field name="name" />
+                    <field name="tahun" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Membuat View Form PTKP -->
+        <record id="form_hr_ptkp" model="ir.ui.view">
+            <field name="name">hr.ptkp.form</field>
+            <field name="model">hr.ptkp</field>
+            <field name="arch" type="xml">
+                <form string="PTKP">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="tahun" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Membuat Action/Event PTKP -->
+        <record id="action_hr_ptkp" model="ir.actions.act_window">
+            <field name="name">PTKP</field>
+            <field name="res_model">hr.ptkp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a PTKP.
+                </p>
+            </field>
+        </record>
+
+        <!-- Membuat Menu PTKP -->
+        <menuitem id="hr_ptkp"
+        parent="hr.menu_human_resources_configuration" name="PTKP"
+        action="action_hr_ptkp" groups="hr.group_hr_user"/>
+    </data>
+</odoo>
