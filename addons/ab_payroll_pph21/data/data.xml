@@ -86,10 +86,10 @@
             <field name="amount_select">code</field>
             <field name="condition_select">none</field>
             <field name="amount_python_compute">
-                hasil = 0
-                if employee.bpjs_ktk:
-                    hasil = contract.wage #+ contract.tunj_fungsional + contract.tunj_makan
-                result = hasil * 0.02 * -1
+hasil = 0
+if employee.bpjs_ktk:
+    hasil = contract.wage #+ contract.tunj_fungsional + contract.tunj_makan
+result = hasil * 0.02 * -1
             </field>
         </record>
         <record id="PPH21" model="hr.salary.rule">
@@ -100,18 +100,18 @@
             <field name="amount_select">code</field>
             <field name="condition_select">none</field>
             <field name="amount_python_compute">
-                pajak = 0
-                self = payslip.env['hr.payslip']
-                pendapatan = categories.BASIC
-                allowance = categories.ALW
-                pensiun = KK * -1
-                pajak = self.compute_pph21(
-                    pendapatan, allowance,
-                    str(payslip.date_from)[0:4], payslip.date_to,
-                    employee, payslip.id, pensiun
-                )
-                pajak = pajak * -1
-                result = pajak
+pajak = 0
+self = payslip.env['hr.payslip']
+pendapatan = categories.BASIC
+allowance = categories.ALW
+pensiun = KK * -1
+pajak = self.compute_pph21(
+    pendapatan, allowance,
+    str(payslip.date_from)[0:4], payslip.date_to,
+    employee, payslip.id, pensiun
+)
+pajak = pajak * -1
+result = pajak
             </field>
         </record>
     </data>
